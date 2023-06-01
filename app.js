@@ -86,13 +86,13 @@ class Student extends Person {
     this.year = year;
   }
 
-  showFullName(midleName) {
-    return this.name + " " + midleName + " " + this.surname;
+  showFullName(middleName) {
+    return this.name + " " + middleName + " " + this.surname;
   }
 
   showCourse() {
     const currentYear = new Date().getFullYear();
-    const course = currentYear - this.year;
+    const course = currentYear - this.year + 1;
     return course;
   }
 }
@@ -102,48 +102,97 @@ console.log(stud1.showFullName("Petrovych"));
 console.log("Current course: " + stud1.showCourse());
 
 // ---- 4 ---- //
+// class Marker {
+//   constructor(color, inkLevel) {
+//     this.color = color;
+//     this.inkLevel = inkLevel;
+//   }
+
+//   print(text) {
+//     let printedText = "";
+//     for (let i = 0; i < text.length; i++) {
+//       if (this.inkLevel > 0) {
+//         if (text[i] !== " ") {
+//           printedText += text[i];
+//           this.inkLevel -= 0.5;
+//         } else {
+//           printedText += " ";
+//         }
+//       } else {
+//         break;
+//       }
+//     }
+
+//     console.log(`Printed text: ${printedText}`);
+//     console.log(`Ink level: ${this.inkLevel}%`);
+//   }
+// }
+
+// class RefillableMarker extends Marker {
+//   refill(inkAmount) {
+//     if (this.inkLevel + inkAmount <= 100) {
+//       this.inkLevel += inkAmount;
+//       console.log(`Marker refilled. Ink level: ${this.inkLevel}%`);
+//     } else {
+//       console.log("Cannot refill. Ink level exceeds 100%.");
+//     }
+//   }
+// }
+
+// // Приклад
+// const simpleMarker = new Marker("blue", 50);
+// simpleMarker.print("Simple Marker!");
+// const refillableMarker = new RefillableMarker("green", 70);
+// refillableMarker.print("This is a refillable marker.");
+
 class Marker {
-  constructor(color, inkLevel) {
+  constructor(color, ink) {
     this.color = color;
-    this.inkLevel = inkLevel;
+    this.ink = 100;
+  }
+
+  getColor() {
+    return this.color;
+  }
+
+  getInk() {
+    return this.ink;
   }
 
   print(text) {
-    let printedText = "";
+    let printText = "";
     for (let i = 0; i < text.length; i++) {
-      if (this.inkLevel > 0) {
-        if (text[i] !== " ") {
-          printedText += text[i];
-          this.inkLevel -= 0.5;
+      if (this.ink > 0) {
+        // console.log(this.ink); // Залишок краски у %
+        if (text[i] !== " " && text[i] !== "!") {
+          printText += text[i];
+          this.ink -= 0.5;
         } else {
-          printedText += " ";
+          printText += " ";
         }
       } else {
         break;
       }
+      // console.log(text[i]);
     }
 
-    console.log(`Printed text: ${printedText}`);
-    console.log(`Ink level: ${this.inkLevel}%`);
+    console.log("%c" + printText, "color:" + this.color);
+    console.log(`Ink level: ${this.ink}%`);
   }
 }
 
 class RefillableMarker extends Marker {
-  refill(inkAmount) {
-    if (this.inkLevel + inkAmount <= 100) {
-      this.inkLevel += inkAmount;
-      console.log(`Marker refilled. Ink level: ${this.inkLevel}%`);
-    } else {
-      console.log("Cannot refill. Ink level exceeds 100%.");
-    }
+  refill() {
+    this._ink = _ink;
   }
 }
 
-// Приклад
-const simpleMarker = new Marker("blue", 50);
-simpleMarker.print("Simple Marker!");
-const refillableMarker = new RefillableMarker("green", 70);
-refillableMarker.print("This is a refillable marker.");
+const marker = new Marker("red");
+marker.print("Hello World!");
+// const marker2 = new Marker("green");
+// marker2.print("Hello World!");
+
+console.log(marker);
 
 // ---- 5 ---- //
 class Worker {
@@ -156,5 +205,11 @@ class Worker {
   showSalary() {
     // console.log(this);
     return this.dayRate * this.workingDays;
+  }
+
+  _experience = 1.2;
+
+  showSalaryWithExperience() {
+    return _experience * this.dayRate;
   }
 }
