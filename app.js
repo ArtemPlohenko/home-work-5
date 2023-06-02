@@ -196,20 +196,38 @@ console.log(marker);
 
 // ---- 5 ---- //
 class Worker {
-  constructor(fullName, dayRate, workingDays) {
-    this.fullName = fullName;
-    this.dayRate = dayRate;
+  constructor(string, number, workingDays) {
+    this.fullName = string;
+    this.dayRate = number;
     this.workingDays = workingDays;
+    this._experience = 1.2;
   }
 
-  showSalary() {
+  getSalary() {
     // console.log(this);
     return this.dayRate * this.workingDays;
   }
 
-  _experience = 1.2;
+  getSalaryWithExperience() {
+    return this._experience * this.dayRate * this._workingDays;
+  }
 
-  showSalaryWithExperience() {
-    return _experience * this.dayRate;
+  get showExp() {
+    return this._experience;
+  }
+
+  set showExp(setExp) {
+    this._experience = this._experience;
   }
 }
+
+let worker1 = new Worker("John Johnson", 20, 23);
+console.log(worker1.fullName);
+worker1.getSalary();
+console.log("Experience: " + worker1.showExp);
+worker1.getSalaryWithExperience();
+worker1.setExp = 1.5;
+console.log("New experience: " + worker1.showExp);
+worker1.getSalaryWithExperience();
+
+let worker2 = new Worker("Tom Tomson", 48, 22);
