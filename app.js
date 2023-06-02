@@ -217,7 +217,7 @@ class Worker {
   }
 
   set showExp(setExp) {
-    this._experience = this._experience;
+    this._experience = setExp;
   }
 }
 
@@ -226,7 +226,7 @@ console.log(worker1.fullName);
 worker1.getSalary();
 console.log("Experience: " + worker1.showExp);
 worker1.getSalaryWithExperience();
-worker1.setExp = 1.5;
+worker1.showExp = 1.5;
 console.log("New experience: " + worker1.showExp);
 worker1.getSalaryWithExperience();
 
